@@ -1,0 +1,1 @@
+export const Api = 'https://veltech.edu.in/admission_enquiry_2019/cms/edit_data.php?actionVal='
