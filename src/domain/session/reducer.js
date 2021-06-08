@@ -2,9 +2,10 @@ import { LOGIN, LOGIN_ERROR, IN_PROGRESS, LOGOUT ,ERROR} from './actionTypes';
 const INITIAL_STATE = {
   loggedIn: false,
   loggingIn: false,
-  logginError:null,
-  userInfo: undefined,
-  error: undefined
+  userToken: null,
+  logginError:'',
+  userInfo: '',
+  error: ''
 };
 
 export const sessionReducer = (state = INITIAL_STATE, action) => {
@@ -18,6 +19,8 @@ export const sessionReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 loggedIn: true,
+                loggingIn: false,
+                userToken:action.payload.token,
                 userInfo: action.payload
             }
         case LOGIN_ERROR:
@@ -25,12 +28,14 @@ export const sessionReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 loggedIn: false,
                 loggingIn: false,
-                userInfo: {},
+                userToken:null,
                 logginError: action.payload.msg
             }
         case ERROR:
             return {
                 ...state,
+                loggedIn: false,
+                loggingIn: false,
                 error: action.payload.error
             }
     case LOGOUT:

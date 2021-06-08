@@ -5,14 +5,13 @@ import {Avatar,Text,Title,Caption,Paragraph,Drawer,TouchableRipple,Switch} from 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './style.js';
 import { useSelector,useDispatch} from 'react-redux';
-import LogoutButton from '../../../domain/session/LogoutButton.js';
+import { logout } from '../../../domain/session/actions';
 
 export function  DrawerContent(props){
     const[isDarkTheme,setDarkTheme]=React.useState(false);
+    const dispatch = useDispatch();
+    const onLogout = () => dispatch(logout());
 
-    const toggleTheme=()=>{
-        setDarkTheme(!isDarkTheme)
-    }
     const session = useSelector((state) => state.session);
   return (
     <View style={{flex:1}}>
@@ -20,25 +19,25 @@ export function  DrawerContent(props){
             <View style={styles.drawerContent}>
                 <View style={styles.userInfoSection}>
                     <View style={{flexDirection:'row',marginTop: 15}}>
-                        {/* <Avatar.Image
+                        <Avatar.Image
                             source={{
-                                uri: users.userProfileImage
+                                uri: 'https://img-premium.flaticon.com/png/512/3135/3135715.png?token=exp=1623046068~hmac=0b079baed796da5f8933ea13e8624376'
                             }}
                             size={50}
-                        /> */}
+                        />
                         <View style={{marginLeft:15, flexDirection:'column'}}>
-                            {/* <Title style={styles.title}>{users.username}</Title>
-                            <Caption style={styles.caption}>{users.first_name}</Caption> */}
+                            <Title style={styles.title}>John Peter</Title>
+                            <Caption style={styles.caption}>{session.userInfo.user.phone}</Caption>
                         </View>
                     </View>
                     <View style={styles.row}>
                             <View style={styles.section}>
                                 <Paragraph style={[styles.paragraph, styles.caption]}>80</Paragraph>
-                                <Caption style={styles.caption}>Following</Caption>
+                                <Caption style={styles.caption}>Customer</Caption>
                             </View>
                             <View style={styles.section}>
                                 <Paragraph style={[styles.paragraph, styles.caption]}>100</Paragraph>
-                                <Caption style={styles.caption}>Followers</Caption>
+                                <Caption style={styles.caption}>Pending Approval</Caption>
                             </View>
                         </View>
                 </View>
@@ -75,7 +74,7 @@ export function  DrawerContent(props){
                     onPress={() => { onLogout() }}
                 />
         </Drawer.Section>
-        {/* <LogoutButton/> */}
+
     </View>
   );
 }

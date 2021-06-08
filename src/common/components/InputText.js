@@ -1,24 +1,23 @@
 import React from 'react'
-import { View, TextInput,StyleSheet } from 'react-native'
+import { View, Text,StyleSheet,TextInput } from 'react-native'
+import { colors } from '../utils/Colors'
 
-export default function Input(props) {
+export default function InputText(props) {
     return (
-        <View>
             <TextInput
-          style={styles.textInput}
+          style={styles.input}
           placeholder={props.placeholder}
           autoCapitalize="none"
+          secureTextEntry={props.secureTextEntry}
           onChangeText={props.handleText}
         />
-        </View>
     )
 }
 
 const styles = StyleSheet.create({
-    textInput: {
+    input: {
         flex: 1,
         marginTop: Platform.OS === 'ios' ? 0 : -12,
         paddingLeft: 10,
-        color: '#05375a',
     },
   })

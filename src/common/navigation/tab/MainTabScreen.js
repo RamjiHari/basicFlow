@@ -1,21 +1,26 @@
 import * as React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import HomeScreen from '../../../domain/home/HomeScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { colors } from "../../utils/Colors";
+import {HomeStackScreen,RegisterStackScreen} from '../stack/RootStackScreen';
 
 const Tab = createMaterialBottomTabNavigator();
+
+
+
 const MainTabScreen=(props)=>{
 
     return(
         <Tab.Navigator
       initialRouteName="Home"
-      activeColor='#009387'
-      barStyle={{ backgroundColor: colors.headerColor }}>
+      activeColor={colors.secondaryColor}
+      barStyle={{ backgroundColor: colors.defaultWhite ,borderWidth:0.15}}>
 
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeStackScreen}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => (
@@ -25,12 +30,12 @@ const MainTabScreen=(props)=>{
       />
 
       <Tab.Screen
-        name="Explore"
-        component={HomeScreen}
+        name="Register"
+        component={RegisterStackScreen}
         options={{
-          tabBarLabel: 'Explore',
+          tabBarLabel: 'Register',
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="sticker" color={color} size={26} />
+            <Icon name="person-add" color={color} size={26} />
           ),
         }}
       />
@@ -41,4 +46,5 @@ const MainTabScreen=(props)=>{
 
 
 export default MainTabScreen;
+
 

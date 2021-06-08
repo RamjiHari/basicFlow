@@ -10,8 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-picker/picker": "^1.16.1",
     "react": "17.0.1",
     "react-native": "0.64.1",
+    "react-native-country-picker-modal": "^2.0.0",
+    "react-native-date-picker": "^3.3.1",
+    "react-native-phone-input": "^1.0.9",
+    "react-native-phone-number-input": "^2.1.0",
     "react-native-popup-menu": "^0.15.10"
   },
   "devDependencies": {

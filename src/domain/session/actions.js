@@ -1,9 +1,9 @@
 import { LOGIN, LOGIN_ERROR, IN_PROGRESS, LOGOUT,ERROR } from './actionTypes';
 import { fetchApi } from './fetch';
-import { LOGIN_URL } from './urls';
-export const login = (username,passord) => {
+
+export const login = (phone,passord) => {
     const datas ={
-        "email": username,
+        "phone": phone,
         "password": passord
     }
         return async (dispatch) => {
@@ -11,7 +11,9 @@ export const login = (username,passord) => {
                 type: IN_PROGRESS,
             });
             // simulating api call. call the api here and use that response
-            const response = await fetchApi(LOGIN_URL,datas);
+            const response = await fetchApi(datas);
+
+            console.log(response,"response")
             if (response.error==undefined) {
                 if(response.status=='success'){
                     dispatch({
