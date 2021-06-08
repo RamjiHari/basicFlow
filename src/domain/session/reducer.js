@@ -9,6 +9,7 @@ const INITIAL_STATE = {
 };
 
 export const sessionReducer = (state = INITIAL_STATE, action) => {
+
   switch (action.type) {
     case IN_PROGRESS:
         return {

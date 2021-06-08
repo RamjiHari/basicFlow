@@ -12,7 +12,7 @@ export default function DropDown(props) {
     return ( <Picker.Item key={index} label={item.data_code} value={item.data_code} /> )
     })
     return (
-        <Picker style={{ height: 50, width: '100%' }}  onValueChange={props.handleText}>
+        <Picker style={{ height: 50, width: '100%' }}   onValueChange={props.handleText}>
          <Picker.Item label="Options"/>
             {items}
         </Picker>

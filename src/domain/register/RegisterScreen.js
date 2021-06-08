@@ -6,22 +6,26 @@ import DatePicker from 'react-native-date-picker'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import DropDown from '../../common/components/DropDown'
+import MultiSelector from '../../common/components/MultiSelect';
 
 export default function RegisterScreen() {
   const session = useSelector(state => state.session);
   const [date, setDate] = React.useState(new Date())
   const [show, setShow] = React.useState(false)
   const [state, setstate] = React.useState({
-    fname:'' , addr_type :'' , gender : ''
+    fname:'' , addr_type :'' , visit_purpose : '' ,selectedItems : [] ,
    })
 
 
    const onChangeText = (key, val) => {
+
    setstate({
         ...state,
        [key]: val
    })
   }
+
+  console.log(state.selectedItems,"sssssss")
 
   return (
     <View style={styles.container}>
@@ -38,10 +42,10 @@ export default function RegisterScreen() {
 
     <Text>{date.getDate() + '-' + date.getMonth() + '-' + date.getYear() }</Text> */}
 
-    <DropDown type = 'addr_type'  handleText={(itemValue) => onChangeText('addr_type',itemValue)}/>
+    <DropDown type = 'addr_type'  handleText={(val) => onChangeText('addr_type',val)}/>
 
     <View style={styles.action}>
-      <DropDown type = 'gender'  handleText={(itemValue) => onChangeText('gender',itemValue)}/>
+      <DropDown type = 'visit_purpose'  handleText={(val) => onChangeText('visit_purpose',val)}/>
     </View>
 
     <View style={styles.action}>
@@ -49,8 +53,13 @@ export default function RegisterScreen() {
     </View>
 
 
+    <MultiSelector type='visit_purpose' selectedItems={state.selectedItems} handleText={(val) => onChangeText('selectedItems',val)}/>
+
+
+
     <Text>{state.addr_type}</Text>
     <Text>{state.fname}</Text>
+    <Text>{state.selectedItems}</Text>
     </View>
   );
 }

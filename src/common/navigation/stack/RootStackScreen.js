@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import LoginScreen from '../../../domain/session/LoginScreen';
 import { colors } from '../../utils/Colors';
 import { HOME_HEAD, REGISTER_HEAD } from '../../utils/Constants';
+import { fromLeft } from 'react-navigation-transitions';
 
 const LoginStack = createStackNavigator();
 const HomeStack = createStackNavigator();
@@ -21,7 +22,7 @@ const screenOptions = {
     headerTintColor: colors.defaultWhite,
     headerTitleStyle: {
     fontWeight: 'bold'
-    }
+    },
 }
 
 export const HeaderLeft = ({navigation,screen}) => {
@@ -29,8 +30,8 @@ export const HeaderLeft = ({navigation,screen}) => {
     return(
         <View style={{flexDirection:'row'}}>
 
-        {screen!='Home'?<Icon name="chevron-back" size={25} color={colors.defaultWhite} onPress={() => navigation.goBack()}></Icon> : null }
-        <MaterialCommunityIcons name="menu" size={25} color={colors.defaultWhite} onPress={() => navigation.openDrawer()}></MaterialCommunityIcons>
+            {screen!='Home'?<Icon name="chevron-back" size={25} color={colors.defaultWhite} onPress={() => navigation.goBack()}></Icon> : null }
+            <MaterialCommunityIcons name="menu" size={25} color={colors.defaultWhite} onPress={() => navigation.openDrawer()}></MaterialCommunityIcons>
 
         </View>
     )
@@ -56,7 +57,7 @@ export  const  LogStackScreen=({navigation}) =>{
 }
 
 export const HomeStackScreen=(props) =>{
-            return(<HomeStack.Navigator screenOptions={screenOptions}>
+            return(<HomeStack.Navigator  screenOptions={screenOptions} >
                     <HomeStack.Screen name="Home" component={HomeScreen} options={{
                     title:HOME_HEAD,
                     headerTitleStyle: { alignSelf: 'center' },
@@ -65,10 +66,10 @@ export const HomeStackScreen=(props) =>{
                     ),
                     headerRight: () => (
                         <HeaderRight screen ='Home' navigation={props.navigation} />
-            ),
-
+                    ),
                     }} />
             </HomeStack.Navigator>)
+
 }
 
 export const RegisterStackScreen=(props) =>{
@@ -77,6 +78,7 @@ export const RegisterStackScreen=(props) =>{
             <RegisterStack.Screen name="Register" component={RegisterScreen} options={{
             title:REGISTER_HEAD,
             headerTitleStyle: { alignSelf: 'center' },
+
             headerLeft: () => (
                <HeaderLeft screen ='Register' navigation={props.navigation} />
 

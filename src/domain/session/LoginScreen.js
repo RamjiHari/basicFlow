@@ -25,47 +25,27 @@ import { LOGIN_HEAD } from '../../common/utils/Constants';
 const SignInScreen  =   (  { navigation } )  =>  {
 
     const session  =  useSelector ( state  => state.session );
-    const  [ phone ,  setPhone ]  =  React.useState ( '' )
-    const  [ otp ,  setOtp ]  =  React.useState ( '' )
-    const  [ password ,  setPassword ]  =  React.useState ( '' )
+    const  [ phone ,  setPhone ]  =  useState ( '' )
+    const  [ otp ,  setOtp ]  =  useState ( '' )
+    const  [ password ,  setPassword ]  =  useState ( '' )
     const image  =  require ( '../../common/assets/images/flow_banner.jpg' );
     const dispatch  =  useDispatch (  );
     const onLogout = () => dispatch(logout());
 
-    if ( session.loggingIn ) {
-        return(
-          <View style = {{ flex:1 , justifyContent:'center' , alignItems:'center' }}>
-            <ActivityIndicator size = "large" color = {colors.primaryColor}/>
-          </View>
-        );
-    }
+
 
     const  [ secureTextEntry , setsecureTextEntry ] = useState ( true )
     const updateSecureTextEntry  =   (  )  =>  {
         setsecureTextEntry ( !secureTextEntry )
      }
 
-    const loginHandle  =   ( phone ,  password )  =>  {
-        if  (  phone.length  ==  0 || password.length  ==  0  )  {
-            Alert.alert ( 'Wrong Input!' ,  'Username or password field cannot be empty.' ,   [
-                 { text :  'Okay' }
-             ] );
-            return;
-         }
-
-        dispatch ( login ( phone ,  password , btn.type ) );
-       // console.log ( phone , password , btn.type )
-     }
 
 
-
-
-
-
-    const  [ btn , setBtn ]  =  useState (  { type : '' , status : true } );
+    const  [ btn , setBtn ]  =  useState (  { type : 'password' , status : true } );
     const setBtnHandler  =   ( type , status )  => {
         setBtn (  { type : type , status : status } )
      }
+
 
     const  [ show , setShow ] = useState ( false )
     const setShowhandler  =   (  )  => {
@@ -79,8 +59,28 @@ const SignInScreen  =   (  { navigation } )  =>  {
      }
 
 
+     const data = {
+        phone : phone ,
+        password : btn.type == 'password' ? password : otp ,
+        type : btn.type
+    }
+
+    const loginHandle  =   ( data )  =>  {
+
+        if  (  data.phone.length  ==  0 || (data.password.length  ==  0  ) )  {
+            Alert.alert ( 'Wrong Input!' ,  'Username or password field cannot be empty.' ,   [
+                 { text :  'Okay' }
+             ] );
+            return;
+         }
+
+        dispatch ( login ( data ) );
+
+     }
 
 
+
+    console.log(data,"logdata")
 
     return  (
     <View style =  { styles.container }>
@@ -165,7 +165,7 @@ const SignInScreen  =   (  { navigation } )  =>  {
                         </View>
                         <View style =  { styles.button }>
                             <TouchableOpacity
-                                onPress =  {  (  )  =>  { loginHandle (  phone ,  password  ) } }
+                                onPress =  {  (  )  =>  { loginHandle ( data ) } }
                             style =  { styles.signIn }>
                             <Text>Login</Text>
                             </TouchableOpacity>
@@ -219,7 +219,7 @@ const SignInScreen  =   (  { navigation } )  =>  {
 
                              {  show &&
                                 <View style =  { styles.button }>
-                                    <TouchableOpacity onPress =  {  (  )  =>  { loginHandle (  phone ,  otp  ) } } style =  { styles.signIn }>
+                                    <TouchableOpacity onPress =  {  (  )  =>  { loginHandle (  data  ) } } style =  { styles.signIn }>
                                         <Text>Login</Text>
                                     </TouchableOpacity>
                             </View>
