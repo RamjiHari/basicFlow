@@ -8,12 +8,14 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Icon from 'react-native-vector-icons/Ionicons';
 import LoginScreen from '../../../domain/session/LoginScreen';
 import { colors } from '../../utils/Colors';
-import { HOME_HEAD, REGISTER_HEAD } from '../../utils/Constants';
-import { fromLeft } from 'react-navigation-transitions';
+import { FONT_FAMILY, HOME_HEAD, REGISTER_HEAD } from '../../utils/Constants';
+
+import CustomerProfile from '../../../domain/home/CustomerProfile';
 
 const LoginStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 const RegisterStack = createStackNavigator();
+const ProfileStack = createStackNavigator();
 
 const screenOptions = {
     headerStyle: {
@@ -21,28 +23,32 @@ const screenOptions = {
     },
     headerTintColor: colors.defaultWhite,
     headerTitleStyle: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily:FONT_FAMILY
     },
 }
+
+
 
 export const HeaderLeft = ({navigation,screen}) => {
 
     return(
         <View style={{flexDirection:'row'}}>
 
-            {screen!='Home'?<Icon name="chevron-back" size={25} color={colors.defaultWhite} onPress={() => navigation.goBack()}></Icon> : null }
-            <MaterialCommunityIcons name="menu" size={25} color={colors.defaultWhite} onPress={() => navigation.openDrawer()}></MaterialCommunityIcons>
+            {screen!='Home'?<Icon name="chevron-back" size={40} color={colors.defaultWhite} onPress={() => navigation.goBack()}></Icon> : null }
+            <MaterialCommunityIcons name="menu" size={40} color={screen!='Home' ? colors.defaultWhite :colors.textblack} onPress={() => navigation.openDrawer()}></MaterialCommunityIcons>
 
         </View>
     )
 }
 
-export const HeaderRight = ({navigation,screen}) => {
+export const HeaderRight = ({screen}) => {
 
     return(
-        <View>
+        <View style={{marginRight:10}}>
+
             <TouchableOpacity>
-                <Avatar.Image source={require('../../assets/images/icon.png')} size={40} />
+                <Avatar.Image  source={screen=='Home'? {uri:'https://www.flowglobal.net/content/media/LRM_EXPORT_28953082622816_20191110_115223070.jpeg'} : require('../../assets/images/icon.png')} size={40} />
             </TouchableOpacity>
         </View>
     )
@@ -56,38 +62,51 @@ export  const  LogStackScreen=({navigation}) =>{
   );
 }
 
-export const HomeStackScreen=(props) =>{
-            return(<HomeStack.Navigator  screenOptions={screenOptions} >
+export const HomeStackScreen=({navigation}) =>{
+            return(<HomeStack.Navigator>
                     <HomeStack.Screen name="Home" component={HomeScreen} options={{
-                    title:HOME_HEAD,
+                    headerTitle:'',
                     headerTitleStyle: { alignSelf: 'center' },
                     headerLeft: () => (
-                        <HeaderLeft screen ='Home' navigation={props.navigation} />
+                    <HeaderLeft screen ='Home' navigation={navigation} />
                     ),
                     headerRight: () => (
-                        <HeaderRight screen ='Home' navigation={props.navigation} />
-                    ),
+                    <HeaderRight screen ='Home'/>
+                    )
                     }} />
+
             </HomeStack.Navigator>)
 
 }
 
-export const RegisterStackScreen=(props) =>{
+export const RegisterStackScreen=({navigation}) =>{
     return(
         <RegisterStack.Navigator screenOptions={screenOptions}>
-            <RegisterStack.Screen name="Register" component={RegisterScreen} options={{
+            {/* <RegisterStack.Screen name="Register"  component={RegisterScreen} options={{
             title:REGISTER_HEAD,
             headerTitleStyle: { alignSelf: 'center' },
 
             headerLeft: () => (
-               <HeaderLeft screen ='Register' navigation={props.navigation} />
+               <HeaderLeft screen ='Register' navigation={navigation} />
 
             ),
             headerRight: () => (
-               <HeaderRight screen ='Register' navigation={props.navigation} />
+               <HeaderRight/>
 
             )
-            }} />
+            }} /> */}
+
+            <ProfileStack.Screen name="Profile" component={CustomerProfile} options={{
+                    title:'Customer Profile',
+                    headerTitleStyle: { alignSelf: 'center',fontFamily:FONT_FAMILY },
+                    headerLeft: () => (
+                    <HeaderLeft screen ='Profile' navigation={navigation} />
+                    ),
+                    headerRight: () => (
+                    <HeaderRight screen ='Profile'/>
+                    ),
+                    }}  />
+
     </RegisterStack.Navigator>
     )
 }

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { FONT_FAMILY } from '../../utils/Constants';
 
 export default StyleSheet.create({
     drawerContent: {
@@ -11,10 +12,12 @@ export default StyleSheet.create({
         fontSize: 16,
         marginTop: 3,
         fontWeight: 'bold',
+        fontFamily:FONT_FAMILY
       },
       caption: {
         fontSize: 14,
         lineHeight: 14,
+        fontFamily:FONT_FAMILY
       },
       row: {
         marginTop: 20,
@@ -24,11 +27,12 @@ export default StyleSheet.create({
       section: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginRight: 15,
+        marginRight: 10,
       },
       paragraph: {
         fontWeight: 'bold',
         marginRight: 3,
+        fontFamily:FONT_FAMILY
       },
       drawerSection: {
         marginTop: 15,

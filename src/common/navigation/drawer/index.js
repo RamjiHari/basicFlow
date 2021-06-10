@@ -6,6 +6,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './style.js';
 import { useSelector,useDispatch} from 'react-redux';
 import { logout } from '../../../domain/session/actions';
+import { colors } from '../../utils/Colors.js';
+
 
 export function  DrawerContent(props){
     const[isDarkTheme,setDarkTheme]=React.useState(false);
@@ -19,12 +21,7 @@ export function  DrawerContent(props){
             <View style={styles.drawerContent}>
                 <View style={styles.userInfoSection}>
                     <View style={{flexDirection:'row',marginTop: 15}}>
-                        <Avatar.Image
-                            source={{
-                                uri: 'https://img-premium.flaticon.com/png/512/3135/3135715.png?token=exp=1623046068~hmac=0b079baed796da5f8933ea13e8624376'
-                            }}
-                            size={50}
-                        />
+                    <Avatar.Image  source={{uri:'https://www.flowglobal.net/content/media/LRM_EXPORT_28953082622816_20191110_115223070.jpeg'}} />
                         <View style={{marginLeft:15, flexDirection:'column'}}>
                             <Title style={styles.title}>John Peter</Title>
                             <Caption style={styles.caption}>{session.userInfo.user.phone}</Caption>
@@ -36,25 +33,25 @@ export function  DrawerContent(props){
                                 <Caption style={styles.caption}>Customer</Caption>
                             </View>
                             <View style={styles.section}>
-                                <Paragraph style={[styles.paragraph, styles.caption]}>100</Paragraph>
+                                <Paragraph style={[styles.paragraph, styles.caption]}>10</Paragraph>
                                 <Caption style={styles.caption}>Pending Approval</Caption>
                             </View>
                         </View>
                 </View>
                 <Drawer.Section style={styles.drawerSection}>
                         <DrawerItem
-                            icon={({color, size}) => (
+                            icon={({size}) => (
                                 <Icon
                                 name="home-outline"
-                                color={color}
+                                color={colors.textblack}
                                 size={size}
+
                                 />
                             )}
                             label="Home"
+                            labelStyle={{color:colors.textblack}}
                             onPress={() => {props.navigation.navigate('Home')}}
                         />
-
-
 
 
                     </Drawer.Section>
@@ -63,14 +60,15 @@ export function  DrawerContent(props){
         </DrawerContentScrollView>
         <Drawer.Section style={styles.bottomDrawerSection}>
         <DrawerItem
-                    icon={({color, size}) => (
+                    icon={({ size}) => (
                         <Icon
                         name="exit-to-app"
-                        color={color}
+                        color={colors.textblack}
                         size={size}
                         />
                     )}
                     label="Sign Out"
+                    labelStyle={{color:colors.textblack}}
                     onPress={() => { onLogout() }}
                 />
         </Drawer.Section>

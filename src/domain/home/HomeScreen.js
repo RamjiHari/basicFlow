@@ -1,24 +1,35 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { useSelector } from 'react-redux';
+import React from 'react'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { colors } from '../../common/utils/Colors';
+import HomeNavigation from './HomeNavigation';
 
 
-export default function HomeScreen() {
-  const session = useSelector(state => state.session);
-  return (
-    <View style={styles.container}>
-     <Text>Welcome {session.userInfo.user.phone}</Text>
-      <Text>Open up Home.js to start working on your app!</Text>
+export default function HomeScreen({ navigation }) {
 
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <View style={styles.logoContainer}>
+                    <Image source={require('../../common/assets/images/icon.png')} style={styles.logo} />
+            </View>
+            <View>
+            <HomeNavigation/>
+            </View>
+
+        </View>
+    )
 }
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    container: {
+        flex: 1,
+        backgroundColor:colors.defaultWhite
+    },
+    logoContainer: {
+        alignItems:'center'
+    },
+    logo: {
+        width: 150,
+        height: 150,
+
+    },
+})

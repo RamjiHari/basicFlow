@@ -26,7 +26,6 @@ export default StyleSheet.create({
       },
       logText:{
           color: colors.defaultWhite,
-
           fontSize:30,
           fontFamily:'Montserrat-Regular'
       },

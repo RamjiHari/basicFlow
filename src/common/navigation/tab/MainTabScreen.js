@@ -33,9 +33,9 @@ const MainTabScreen=(props)=>{
         name="Register"
         component={RegisterStackScreen}
         options={{
-          tabBarLabel: 'Register',
+          tabBarLabel: 'Profile',
           tabBarIcon: ({ color }) => (
-            <Icon name="person-add" color={color} size={26} />
+            <Icon name="person" color={color} size={26} />
           ),
         }}
       />

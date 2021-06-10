@@ -6,6 +6,7 @@ export default function InputText(props) {
     return (
             <TextInput
           style={styles.input}
+          value={props.value}
           placeholder={props.placeholder}
           autoCapitalize="none"
           secureTextEntry={props.secureTextEntry}
