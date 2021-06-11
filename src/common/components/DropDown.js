@@ -1,11 +1,11 @@
 import React , {useState} from 'react'
 import { View, Text } from 'react-native'
 import {Picker} from '@react-native-picker/picker';
-import Master from '../utils/Master';
-
+import { REGISTER_HEAD } from '../utils/Constants';
+import Master from '../utils/DropDownMaster';
 export default function DropDown(props) {
 
-
+    console.log(Master,"sss")
     const[category,setCategory]= React.useState(Master.filter(e=>e.data_key==props.type))
 
     let items = category.map((item,index) => {

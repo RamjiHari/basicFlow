@@ -1,21 +1,15 @@
 import React from 'react'
-import { View, Text ,TouchableOpacity,} from 'react-native'
-import {Avatar} from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../../../domain/home/HomeScreen';
-import RegisterScreen from '../../../domain/register/RegisterScreen';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon from 'react-native-vector-icons/Ionicons';
-import LoginScreen from '../../../domain/session/LoginScreen';
+import CustomerScreen from '../../../domain/customer/';
+import RegisterScreen from '../../../domain/registerCustomer';
+import LoginScreen from '../../../domain/login';
 import { colors } from '../../utils/Colors';
-import { FONT_FAMILY, HOME_HEAD, REGISTER_HEAD } from '../../utils/Constants';
+import { FONT_FAMILY, HOME_HEAD, REGISTER_HEAD ,CUSTOMER_HEAD} from '../../utils/Constants';
+import { HeaderLeft, HeaderRight } from '../../components/Header';
+import { useNavigation } from '@react-navigation/native';
 
-import CustomerProfile from '../../../domain/home/CustomerProfile';
-
-const LoginStack = createStackNavigator();
-const HomeStack = createStackNavigator();
-const RegisterStack = createStackNavigator();
-const ProfileStack = createStackNavigator();
+const Stack=createStackNavigator()
 
 const screenOptions = {
     headerStyle: {
@@ -28,45 +22,19 @@ const screenOptions = {
     },
 }
 
-
-
-export const HeaderLeft = ({navigation,screen}) => {
-
-    return(
-        <View style={{flexDirection:'row'}}>
-
-            {screen!='Home'?<Icon name="chevron-back" size={40} color={colors.defaultWhite} onPress={() => navigation.goBack()}></Icon> : null }
-            <MaterialCommunityIcons name="menu" size={40} color={screen!='Home' ? colors.defaultWhite :colors.textblack} onPress={() => navigation.openDrawer()}></MaterialCommunityIcons>
-
-        </View>
-    )
-}
-
-export const HeaderRight = ({screen}) => {
-
-    return(
-        <View style={{marginRight:10}}>
-
-            <TouchableOpacity>
-                <Avatar.Image  source={screen=='Home'? {uri:'https://www.flowglobal.net/content/media/LRM_EXPORT_28953082622816_20191110_115223070.jpeg'} : require('../../assets/images/icon.png')} size={40} />
-            </TouchableOpacity>
-        </View>
-    )
-}
-
 export  const  LogStackScreen=({navigation}) =>{
   return (
-   <LoginStack.Navigator headerMode='none'>
-       <LoginStack.Screen name="Signin" component={LoginScreen}/>
-   </LoginStack.Navigator>
+   <Stack.Navigator headerMode='none'>
+       <Stack.Screen name="Signin" component={LoginScreen}/>
+   </Stack.Navigator>
   );
 }
 
 export const HomeStackScreen=({navigation}) =>{
-            return(<HomeStack.Navigator>
-                    <HomeStack.Screen name="Home" component={HomeScreen} options={{
+            return(<Stack.Navigator>
+                    <Stack.Screen name="Home"   component={HomeScreen} options={{
                     headerTitle:'',
-                    headerTitleStyle: { alignSelf: 'center' },
+                    headerTitleStyle: { alignSelf: 'center' ,backgroundColor:'white'},
                     headerLeft: () => (
                     <HeaderLeft screen ='Home' navigation={navigation} />
                     ),
@@ -74,15 +42,31 @@ export const HomeStackScreen=({navigation}) =>{
                     <HeaderRight screen ='Home'/>
                     )
                     }} />
+                    <Stack.Screen name="Register" options={{headerShown:false}} component={RegisterStackScreen} />
+            </Stack.Navigator>)
 
-            </HomeStack.Navigator>)
+}
+
+export const CustomerStackScreen=({navigation}) =>{
+    return(<Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen name="Search" component={CustomerScreen} options={{
+            title:CUSTOMER_HEAD,
+            headerTitleStyle: { alignSelf: 'center' },
+            headerLeft: () => (
+            <HeaderLeft screen ='Customer' navigation={navigation} />
+            ),
+            headerRight: () => (
+            <HeaderRight screen ='Customer'/>
+            )
+            }} />
+    </Stack.Navigator>)
 
 }
 
 export const RegisterStackScreen=({navigation}) =>{
     return(
-        <RegisterStack.Navigator screenOptions={screenOptions}>
-            {/* <RegisterStack.Screen name="Register"  component={RegisterScreen} options={{
+        <Stack.Navigator screenOptions={screenOptions}>
+            <Stack.Screen name="Register"  component={RegisterScreen} options={{
             title:REGISTER_HEAD,
             headerTitleStyle: { alignSelf: 'center' },
 
@@ -92,21 +76,8 @@ export const RegisterStackScreen=({navigation}) =>{
             ),
             headerRight: () => (
                <HeaderRight/>
-
             )
-            }} /> */}
-
-            <ProfileStack.Screen name="Profile" component={CustomerProfile} options={{
-                    title:'Customer Profile',
-                    headerTitleStyle: { alignSelf: 'center',fontFamily:FONT_FAMILY },
-                    headerLeft: () => (
-                    <HeaderLeft screen ='Profile' navigation={navigation} />
-                    ),
-                    headerRight: () => (
-                    <HeaderRight screen ='Profile'/>
-                    ),
-                    }}  />
-
-    </RegisterStack.Navigator>
+            }} />
+        </Stack.Navigator>
     )
 }

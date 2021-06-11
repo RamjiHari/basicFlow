@@ -4,7 +4,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { colors } from "../../utils/Colors";
-import {HomeStackScreen,RegisterStackScreen} from '../stack/RootStackScreen';
+import {CustomerStackScreen, HomeStackScreen,RegisterStackScreen} from '../stack/RootStackScreen';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -30,16 +30,30 @@ const MainTabScreen=(props)=>{
       />
 
       <Tab.Screen
-        name="Register"
-        component={RegisterStackScreen}
+        name="Search"
+        component={CustomerStackScreen}
         options={{
-          tabBarLabel: 'Profile',
+          tabBarLabel: 'Search',
           tabBarIcon: ({ color }) => (
-            <Icon name="person" color={color} size={26} />
+            <Icon name="search" color={color} size={26} />
           ),
         }}
       />
+
+  {/* <Tab.Screen
+        name="Register"
+        component={RegisterStackScreen}
+
+        options={{
+          tabBarLabel: 'Register',
+          tabBarIcon: ({ color }) => (
+            <Icon name="add" color={color} size={26} />
+          ),
+        }}
+      /> */}
     </Tab.Navigator>
+
+
     )
 }
 

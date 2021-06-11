@@ -5,15 +5,15 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { FONT_FAMILY } from '../../common/utils/Constants';
 import { colors } from '../../common/utils/Colors';
 
+
 export default function HomeNavigation({navigation}) {
-    console.log(navigation,"naviagte")
       const [items, setItems] = React.useState([
-       { name: 'Overdue    FAs', icon: 'warning', size: 33 ,navigtion :'Profile'},
-        { name: 'Due Today  FAs', icon: 'lock-clock', size: 36 ,navigtion :'Profile'},
-        { name: 'Schedule   Visit', icon: 'add-location', size: 35,navigtion :'Profile' },
-       { name: 'Customer  Agreement', icon: 'file-copy', size: 33,navigtion :'Profile' },
-        { name: 'Register Customer', icon: 'person-add', size: 33,navigtion :'Profile' },
-        { name: 'Search Customer', icon: 'person-search', size: 33,navigtion :'Profile' },
+       { name: 'Overdue    FAs', icon: 'warning', size: 33 , navigation :'Register'},
+        { name: 'Due Today  FAs', icon: 'lock-clock', size: 36 , navigation :'Register'},
+        { name: 'Schedule   Visit', icon: 'add-location', size: 35, navigation :'Register' },
+       { name: 'Customer  Agreement', icon: 'file-copy', size: 33, navigation :'Register' },
+        { name: 'Register Customer', icon: 'person-add', size: 33, navigation :'Register' },
+        { name: 'Search Customer', icon: 'person-search', size: 33, navigation :'Search' },
         //monetization-on,where-to-vote,wrong-location
       ]);
     return (
@@ -24,9 +24,9 @@ export default function HomeNavigation({navigation}) {
       spacing={10}
       renderItem={({ item }) => (
         <View style={[styles.itemContainer]}>
-          <TouchableOpacity style={styles.itemView}>
+          <TouchableOpacity style={styles.itemView} onPress={() => navigation.navigate(item.navigation)}>
               <MaterialIcons name={item.icon} size={item.size} color='black' />
-              <Text style={styles.itemName}>{item.name}</Text>
+              <Text style={styles.itemName}>{item.name}{item.naviagtion}</Text>
           </TouchableOpacity>
         </View>
       )}

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { sessionReducer } from './src/domain/session/reducer';
+import { sessionReducer } from './src/domain/login/reducer';
 
 
 export default combineReducers({

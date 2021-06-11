@@ -13,37 +13,36 @@ import  {
  } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import Feather from 'react-native-vector-icons/Feather';
+import PhoneInput from "react-native-phone-number-input";
 import  {  useDispatch ,  useSelector  } from 'react-redux';
 import  {  login  } from './actions';
-import PhoneInput from "react-native-phone-number-input";
 import  {  colors  } from '../../common/utils/Colors';
-import styles from './LoginStyle';
-import { logout } from '../../domain/session/actions';
-import { LOGIN_HEAD } from '../../common/utils/Constants';
+import styles from './style';
+import { FLOW_LOGO, LOGIN_BG_IMAGE, LOGIN_HEAD } from '../../common/utils/Constants';
 
 
-const SignInScreen  =   (  { navigation } )  =>  {
+const LoginScreen  =   (  { navigation } )  =>  {
 
     const session  =  useSelector ( state  => state.session );
     const  [ phone ,  setPhone ]  =  useState ( '' )
     const  [ otp ,  setOtp ]  =  useState ( '' )
     const  [ password ,  setPassword ]  =  useState ( '' )
-    const image  =  require ( '../../common/assets/images/flow_banner.jpg' );
+
     const dispatch  =  useDispatch (  );
-    const onLogout = () => dispatch(logout());
 
 
 
     const  [ secureTextEntry , setsecureTextEntry ] = useState ( true )
+
     const updateSecureTextEntry  =   (  )  =>  {
         setsecureTextEntry ( !secureTextEntry )
      }
 
 
 
-    const  [ btn , setBtn ]  =  useState (  { type : 'password' , status : true } );
-    const setBtnHandler  =   ( type , status )  => {
-        setBtn (  { type : type , status : status } )
+    const  [ tab , setTab ]  =  useState (  { type : 'password' , status : true } );
+    const setTabHandler  =   ( type , status )  => {
+        setTab (  { type : type , status : status } )
      }
 
 
@@ -59,15 +58,15 @@ const SignInScreen  =   (  { navigation } )  =>  {
      }
 
 
-     const data = {
+     const loginData = {
         phone : phone ,
-        password : btn.type == 'password' ? password : otp ,
-        type : btn.type
+        password : tab.type == 'password' ? password : otp ,
+        type : tab.type
     }
 
     const loginHandle  =   ( data )  =>  {
 
-        if  (  data.phone.length  ==  0 || (data.password.length  ==  0  ) )  {
+        if  (  loginData.phone.length  ==  0 || (loginData.password.length  ==  0  ) )  {
             Alert.alert ( 'Wrong Input!' ,  'Username or password field cannot be empty.' ,   [
                  { text :  'Okay' }
              ] );
@@ -78,36 +77,32 @@ const SignInScreen  =   (  { navigation } )  =>  {
 
      }
 
-
-
-    console.log(data,"logdata")
-
     return  (
     <View style =  { styles.container }>
         <StatusBar backgroundColor =  { colors.secondaryColor } barStyle = "light-content"/>
             <View style =  { styles.header }>
                 <Image
                     style =  { styles.flowLogo }
-                    source =  { require ( '../../common/assets/images/flow.png' ) }
+                    source =  {  FLOW_LOGO }
                 />
             </View>
 
         <Animatable.View animation = "fadeInUpBig" style =  { styles.footer }>
-            <ImageBackground source =  { image }  imageStyle =  { styles.imageStyle } style =  { styles.bgImage }>
+            <ImageBackground source =  { LOGIN_BG_IMAGE }  imageStyle =  { styles.imageStyle } style =  { styles.bgImage }>
                 <View animation = "fadeInUpBig"  style =  { styles.loginView }>
                     <Text style =  { styles.logText }>{LOGIN_HEAD}</Text>
                 </View>
 
                 <View  style =  { styles.tabButton }>
                     <TouchableOpacity
-                        style =  {  [ styles.pwdbutton ,  {  backgroundColor :  btn.status  ? colors.defaultYellow  :  colors.textGray } ] }
-                        onPress =  {  (  )  => setBtnHandler ( 'password' , true )  }>
+                        style =  {  [ styles.pwdbutton ,  {  backgroundColor :  tab.status  ? colors.defaultYellow  :  colors.textGray } ] }
+                        onPress =  {  (  )  => setTabHandler ( 'password' , true )  }>
                         <Text> Password </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        style =  {  [ styles.pwdbutton ,  {  backgroundColor :  !btn.status  ?  colors.defaultYellow  :  colors.textGray } ] }
-                        onPress =  {  (  )  => setBtnHandler ( 'otp' , false )  }>
+                        style =  {  [ styles.pwdbutton ,  {  backgroundColor :  !tab.status  ?  colors.defaultYellow  :  colors.textGray } ] }
+                        onPress =  {  (  )  => setTabHandler ( 'otp' , false )  }>
                         <Text>OTP</Text>
                     </TouchableOpacity>
                 </View>
@@ -126,7 +121,7 @@ const SignInScreen  =   (  { navigation } )  =>  {
                     </View>
                 </View>
 
-                 { btn.status &&
+                 { tab.status &&
                     <View style =  { styles.centerView }>
 
                         <View style =  { styles.action }>
@@ -165,7 +160,7 @@ const SignInScreen  =   (  { navigation } )  =>  {
                         </View>
                         <View style =  { styles.button }>
                             <TouchableOpacity
-                                onPress =  {  (  )  =>  { loginHandle ( data ) } }
+                                onPress =  {  (  )  =>  { loginHandle ( loginData ) } }
                             style =  { styles.signIn }>
                             <Text>Login</Text>
                             </TouchableOpacity>
@@ -175,7 +170,7 @@ const SignInScreen  =   (  { navigation } )  =>  {
                  }
 
 
-                     { !btn.status  &&
+                     { !tab.status  &&
                         <View style =  { styles.centerView }>
 
                              {   !show &&
@@ -219,7 +214,7 @@ const SignInScreen  =   (  { navigation } )  =>  {
 
                              {  show &&
                                 <View style =  { styles.button }>
-                                    <TouchableOpacity onPress =  {  (  )  =>  { loginHandle (  data  ) } } style =  { styles.signIn }>
+                                    <TouchableOpacity onPress =  {  (  )  =>  { loginHandle (  loginData  ) } } style =  { styles.signIn }>
                                         <Text>Login</Text>
                                     </TouchableOpacity>
                             </View>
@@ -240,7 +235,7 @@ const SignInScreen  =   (  { navigation } )  =>  {
      );
  };
 
-export default SignInScreen;
+export default LoginScreen;
 
 
 

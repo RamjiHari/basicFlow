@@ -5,7 +5,7 @@ import {Avatar,Text,Title,Caption,Paragraph,Drawer,TouchableRipple,Switch} from 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './style.js';
 import { useSelector,useDispatch} from 'react-redux';
-import { logout } from '../../../domain/session/actions';
+import { logout } from '../../../domain/login/actions';
 import { colors } from '../../utils/Colors.js';
 
 
@@ -22,7 +22,7 @@ export function  DrawerContent(props){
                 <View style={styles.userInfoSection}>
                     <View style={{flexDirection:'row',marginTop: 15}}>
                     <Avatar.Image  source={{uri:'https://www.flowglobal.net/content/media/LRM_EXPORT_28953082622816_20191110_115223070.jpeg'}} />
-                        <View style={{marginLeft:15, flexDirection:'column'}}>
+                        <View style={{marginLeft:15,}}>
                             <Title style={styles.title}>John Peter</Title>
                             <Caption style={styles.caption}>{session.userInfo.user.phone}</Caption>
                         </View>
@@ -51,6 +51,20 @@ export function  DrawerContent(props){
                             label="Home"
                             labelStyle={{color:colors.textblack}}
                             onPress={() => {props.navigation.navigate('Home')}}
+                        />
+
+                        <DrawerItem
+                            icon={({size}) => (
+                                <Icon
+                                name="home-outline"
+                                color={colors.textblack}
+                                size={size}
+
+                                />
+                            )}
+                            label="Register"
+                            labelStyle={{color:colors.textblack}}
+                            onPress={() => {props.navigation.navigate('Register')}}
                         />
 
 
