@@ -16,36 +16,35 @@ return (
   <View style={styles.container}>
     <ProgressSteps>
       <ProgressStep label="First Step">
-        <View style={{ alignItems: 'center' }}>
-          <Text>This is the content within step 1!</Text>
-    <View style={styles.action}>
-      <InputText placeholder="lname"/>
-    </View>
-    <View style={styles.action}>
-      <InputText placeholder="lname"/>
-    </View>
-    <View style={styles.action}>
-      <InputText placeholder="lname"/>
-    </View>
-    <View style={styles.action}>
-      <InputText placeholder="lname"/>
-    </View>
-    <View style={styles.action}>
-      <InputText placeholder="lname"/>
-    </View>
-    <View style={styles.action}>
-      <InputText placeholder="lname"/>
-    </View>
-
+      <View style={{alignItems:'center'}}>
+        <Text>This is the content within step 1!</Text>
+        <View style={{flexDirection:'row',justifyContent:'center'}}>
+          <InputText placeholder="lname" width="half"/>
+          <InputText placeholder="lname"  width="half"/>
         </View>
+      <InputText placeholder="lname"  width="full"/>
+      <InputText placeholder="lname"  width="full"/>
+
+      <InputText placeholder="lname" width="half"/>
+      <InputText placeholder="lname"  width="half"/>
+        </View>
+        <InputText placeholder="lname"  width="full"/>
+        <InputText placeholder="lname"  width="half"/>
       </ProgressStep>
       <ProgressStep label="Second Step">
         <View style={{ alignItems: 'center' }}>
           <Text>This is the content within step 2!</Text>
-        </View>
-        <View style={styles.action}>
-      <DropDown type = 'visit_purpose'/>
-    </View>
+
+       <View style={{flexDirection:'row',justifyContent:'center'}}>
+       <DropDown type = 'visit_purpose' width="half"/>
+       <DropDown type = 'visit_purpose' width="half"/>
+       </View>
+
+       <DropDown type = 'visit_purpose' width="full"/>
+       <DropDown type = 'visit_purpose' width="half"/>
+       </View>
+
+
 
       </ProgressStep>
     </ProgressSteps>
@@ -59,13 +58,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
 
   },
-  action: {
-    flexDirection: 'row',
-    width:'90%',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "rgba(155,155,155,1)",
-    paddingBottom: 5,
-    marginLeft:6
-}
+
 })

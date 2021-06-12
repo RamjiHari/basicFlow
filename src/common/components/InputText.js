@@ -5,7 +5,7 @@ import { colors } from '../utils/Colors'
 export default function InputText(props) {
     return (
             <TextInput
-          style={styles.input}
+          style={styles[props.width]}
           value={props.value}
           placeholder={props.placeholder}
           autoCapitalize="none"
@@ -16,9 +16,16 @@ export default function InputText(props) {
 }
 
 const styles = StyleSheet.create({
-    input: {
-
-        marginTop: Platform.OS === 'ios' ? 0 : -12,
-        paddingLeft: 10,
+    half: {
+      width:'40%',
+      borderBottomWidth: 1,
+      borderBottomColor: "rgba(155,155,155,1)",
+      marginRight:20,
+      marginLeft:20,
+    },
+    full: {
+      width:'90%',
+      borderBottomWidth: 1,
+      borderBottomColor: "rgba(155,155,155,1)",
     },
   })
