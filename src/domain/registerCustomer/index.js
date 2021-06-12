@@ -18,9 +18,6 @@ return (
       <ProgressStep label="First Step">
         <View style={{ alignItems: 'center' }}>
           <Text>This is the content within step 1!</Text>
-          <View style={styles.action}>
-      <InputText placeholder="lname"/>
-    </View>
     <View style={styles.action}>
       <InputText placeholder="lname"/>
     </View>
@@ -36,6 +33,10 @@ return (
     <View style={styles.action}>
       <InputText placeholder="lname"/>
     </View>
+    <View style={styles.action}>
+      <InputText placeholder="lname"/>
+    </View>
+
         </View>
       </ProgressStep>
       <ProgressStep label="Second Step">

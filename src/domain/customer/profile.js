@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import { SliderBox } from "react-native-image-slider-box";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import CustomerData from './CustomerData';
+import ProfileData from './ProfileData';
 
 
 
-export default function CustomerProfile() {
+export default function Profile() {
 
 
     const customerDetails = {
@@ -63,7 +63,7 @@ export default function CustomerProfile() {
                     imageLoadingColor="#2196F3" />
 
             </View>
-            <CustomerData customerDetails={customerDetails} />
+            <ProfileData customerDetails={customerDetails} />
         </View>
     )
 }

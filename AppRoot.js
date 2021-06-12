@@ -39,7 +39,7 @@ if(session.userToken==null && session.error !='' && !session.loggedIn){
 
     <NavigationContainer>
     <MenuProvider>
-      {session.loggedIn ?
+      {!session.loggedIn ?
 
         (<Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>}>
       <Drawer.Screen name="Index" component={MainTabScreen} />

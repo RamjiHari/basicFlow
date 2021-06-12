@@ -8,12 +8,12 @@ import { colors } from '../../common/utils/Colors';
 
 export default function HomeNavigation({navigation}) {
       const [items, setItems] = React.useState([
-       { name: 'Overdue    FAs', icon: 'warning', size: 33 , navigation :'Register'},
-        { name: 'Due Today  FAs', icon: 'lock-clock', size: 36 , navigation :'Register'},
-        { name: 'Schedule   Visit', icon: 'add-location', size: 35, navigation :'Register' },
-       { name: 'Customer  Agreement', icon: 'file-copy', size: 33, navigation :'Register' },
+        { name: 'Schedule   Visit', icon: 'add-location', size: 35, navigation :'Schedule' },
         { name: 'Register Customer', icon: 'person-add', size: 33, navigation :'Register' },
         { name: 'Search Customer', icon: 'person-search', size: 33, navigation :'Search' },
+        { name: 'Overdue    FAs', icon: 'warning', size: 33 , navigation :'Register'},
+        { name: 'Due Today  FAs', icon: 'lock-clock', size: 36 , navigation :'Register'},
+       { name: 'Customer  Agreement', icon: 'file-copy', size: 33, navigation :'Register' },
         //monetization-on,where-to-vote,wrong-location
       ]);
     return (
