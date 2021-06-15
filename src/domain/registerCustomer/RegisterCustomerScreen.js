@@ -32,6 +32,7 @@ export default function RegisterCustomerScreen() {
   return (
     <View>
       <Text>Hii</Text>
+      <Text>first checkout</Text>
     </View>
   )
 }
