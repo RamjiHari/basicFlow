@@ -38,18 +38,17 @@ if(session.userToken==null && session.error !='' && !session.loggedIn){
   return (
 
     <NavigationContainer>
-    <MenuProvider>
-      {!session.loggedIn ?
-
+      <MenuProvider>
+        {session.loggedIn ?
         (<Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>}>
-      <Drawer.Screen name="Index" component={MainTabScreen} />
-    </Drawer.Navigator> )
-    :
-      <LogStackScreen/>
+        <Drawer.Screen name="Index" component={MainTabScreen} />
+        </Drawer.Navigator> )
+        :
+        <LogStackScreen/>
 
-      }
-     </MenuProvider>
-  </NavigationContainer>
+        }
+      </MenuProvider>
+    </NavigationContainer>
 
   );
 }

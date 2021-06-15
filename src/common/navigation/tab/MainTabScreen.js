@@ -4,8 +4,8 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { colors } from "../../utils/Colors";
-import {CustomerStackScreen, HomeStackScreen, ScheduleStackScreen} from '../stack/RootStackScreen';
-import { HOME_ROOT , SCHEDULE_ROOT, SEARCH_ROOT } from '../../utils/NavigationRoot';
+import {CustomerStackScreen, HomeStackScreen, RegisterStackScreen, ScheduleStackScreen} from '../stack/RootStackScreen';
+import { HOME_ROOT , REGISTER_ROOT, SCHEDULE_ROOT, SEARCH_ROOT } from '../../utils/NavigationRoot';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -28,6 +28,13 @@ const MainTabScreen=(props)=>{
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
         }}
+        listeners={({ navigation, route }) => ({
+        tabPress: e => {
+        if (route.state && route.state.routeNames.length > 0) {
+        navigation.navigate(HOME_ROOT)
+        }
+        },
+        })}
       />
 
       <Tab.Screen
@@ -39,6 +46,7 @@ const MainTabScreen=(props)=>{
             <Icon name="search" color={color} size={26} />
           ),
         }}
+
       />
 
   <Tab.Screen
@@ -51,7 +59,11 @@ const MainTabScreen=(props)=>{
           ),
         }}
       />
+
+
     </Tab.Navigator>
+
+
 
 
     )

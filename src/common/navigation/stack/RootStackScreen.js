@@ -11,11 +11,10 @@ import { HeaderLeft, HeaderRight } from '../../components/Header';
 import { HOME_ROOT, LOGIN_ROOT, PROFILE_ROOT, REGISTER_ROOT, SCHEDULE_ROOT, SEARCH_ROOT } from '../../utils/NavigationRoot';
 import { FONT_FAMILY } from '../../utils/FontFamily';
 import ScheduleScreen from '../../../domain/schedule/ScheduleScreen';
+import MainTabScreen from '../tab/MainTabScreen';
 
 const Stack=createStackNavigator()
 
-
-console.log(SCHEDULE_ROOT,"ss")
 const screenOptions = {
     headerStyle: {
     backgroundColor: colors.secondaryColor,
@@ -51,8 +50,6 @@ export const HomeStackScreen=({navigation}) =>{
             return(<Stack.Navigator>
                     <Stack.Screen name={HOME_ROOT}   component={HomeScreen} options={option(navigation,null,HOME_ROOT)} />
                     <Stack.Screen name={REGISTER_ROOT} options={{headerShown:false}} component={RegisterStackScreen} />
-                    <Stack.Screen name={SCHEDULE_ROOT} options={{headerShown:false}} component={ScheduleStackScreen} />
-                    <Stack.Screen name={SEARCH_ROOT} options={{headerShown:false}} component={CustomerStackScreen} />
             </Stack.Navigator>)
 
 }
@@ -66,6 +63,7 @@ export const CustomerStackScreen=({navigation}) =>{
 }
 
 export const RegisterStackScreen=({navigation}) =>{
+
     return(
         <Stack.Navigator screenOptions={screenOptions}>
             <Stack.Screen name={REGISTER_ROOT} component={RegisterScreen}  options={option(navigation,REGISTER_HEAD,REGISTER_ROOT)} />
