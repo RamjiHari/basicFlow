@@ -1,17 +1,21 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../../../domain/home';
-import CustomerScreen from '../../../domain/customer/';
-import RegisterScreen from '../../../domain/registerCustomer';
-import ScheduleScreen from '../../../domain/schedule';
-import LoginScreen from '../../../domain/login';
-import Profile from '../../../domain/customer/profile';
+import HomeScreen from '../../../domain/home/HomeScreen';
+import CustomerScreen from '../../../domain/customer/SearchCustomerScreen';
+import RegisterScreen from '../../../domain/registerCustomer/RegisterCustomerScreen';
+import LoginScreen from '../../../domain/login/LoginScreen';
+import Profile from '../../../domain/customer/ProfileScreen';
 import { colors } from '../../utils/Colors';
-import { FONT_FAMILY, HOME_HEAD, REGISTER_HEAD ,CUSTOMER_HEAD,SCHEDULE_HEAD,CUSTOMER_PROFILE} from '../../utils/Constants';
+import { REGISTER_HEAD ,CUSTOMER_HEAD,SCHEDULE_HEAD,PROFILE_HEAD} from '../../utils/NavigationHead';
 import { HeaderLeft, HeaderRight } from '../../components/Header';
+import { HOME_ROOT, LOGIN_ROOT, PROFILE_ROOT, REGISTER_ROOT, SCHEDULE_ROOT, SEARCH_ROOT } from '../../utils/NavigationRoot';
+import { FONT_FAMILY } from '../../utils/FontFamily';
+import ScheduleScreen from '../../../domain/schedule/ScheduleScreen';
 
 const Stack=createStackNavigator()
 
+
+console.log(SCHEDULE_ROOT,"ss")
 const screenOptions = {
     headerStyle: {
     backgroundColor: colors.secondaryColor,
@@ -38,25 +42,25 @@ function option (navigation,head,screen){
 export  const  LogStackScreen=({navigation}) =>{
   return (
    <Stack.Navigator headerMode='none'>
-       <Stack.Screen name="Signin" component={LoginScreen}/>
+       <Stack.Screen name={LOGIN_ROOT} component={LoginScreen}/>
    </Stack.Navigator>
   );
 }
 
 export const HomeStackScreen=({navigation}) =>{
             return(<Stack.Navigator>
-                    <Stack.Screen name="Home"   component={HomeScreen} options={option(navigation,null,'Home')} />
-                    <Stack.Screen name="Register" options={{headerShown:false}} component={RegisterStackScreen} />
-                    <Stack.Screen name="Schedule" options={{headerShown:false}} component={ScheduleStackScreen} />
-                    <Stack.Screen name="Search" options={{headerShown:false}} component={CustomerStackScreen} />
+                    <Stack.Screen name={HOME_ROOT}   component={HomeScreen} options={option(navigation,null,HOME_ROOT)} />
+                    <Stack.Screen name={REGISTER_ROOT} options={{headerShown:false}} component={RegisterStackScreen} />
+                    <Stack.Screen name={SCHEDULE_ROOT} options={{headerShown:false}} component={ScheduleStackScreen} />
+                    <Stack.Screen name={SEARCH_ROOT} options={{headerShown:false}} component={CustomerStackScreen} />
             </Stack.Navigator>)
 
 }
 
 export const CustomerStackScreen=({navigation}) =>{
     return(<Stack.Navigator screenOptions={screenOptions}>
-            <Stack.Screen name="Search"     component={CustomerScreen}  options={option(navigation,CUSTOMER_HEAD,'Search')} />
-            <Stack.Screen name="Profile"    component={Profile}  options={option(navigation,CUSTOMER_PROFILE,'Profile')}/>
+            <Stack.Screen name={SEARCH_ROOT}     component={CustomerScreen}  options={option(navigation,CUSTOMER_HEAD,SEARCH_ROOT)} />
+            <Stack.Screen name={PROFILE_ROOT}    component={Profile}  options={option(navigation,PROFILE_HEAD,PROFILE_ROOT)}/>
     </Stack.Navigator>)
 
 }
@@ -64,7 +68,7 @@ export const CustomerStackScreen=({navigation}) =>{
 export const RegisterStackScreen=({navigation}) =>{
     return(
         <Stack.Navigator screenOptions={screenOptions}>
-            <Stack.Screen name="Register"  component={RegisterScreen}  options={option(navigation,REGISTER_HEAD,'Register')} />
+            <Stack.Screen name={REGISTER_ROOT} component={RegisterScreen}  options={option(navigation,REGISTER_HEAD,REGISTER_ROOT)} />
         </Stack.Navigator>
     )
 }
@@ -72,7 +76,10 @@ export const RegisterStackScreen=({navigation}) =>{
 export const ScheduleStackScreen=({navigation}) =>{
     return(
         <Stack.Navigator screenOptions={screenOptions}>
-            <Stack.Screen name="Schedule"  component={ScheduleScreen}  options={option(navigation,SCHEDULE_HEAD,'Schedule')} />
+        <Stack.Screen name={SCHEDULE_ROOT}  component={ScheduleScreen}  options={option(navigation,SCHEDULE_HEAD,SCHEDULE_ROOT)} />
         </Stack.Navigator>
     )
 }
+
+
+

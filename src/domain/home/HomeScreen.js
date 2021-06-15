@@ -2,8 +2,8 @@ import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from '../../common/utils/Colors';
-import { HOME_FLOW_IMAGE } from '../../common/utils/Constants';
-import HomeNavigation from './menus';
+import { HOME_FLOW_IMAGE } from '../../common/utils/Image';
+import HomeNavigation from './HomeNavigation';
 
 
 export default function HomeScreen({ navigation }) {

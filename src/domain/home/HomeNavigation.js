@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { FlatGrid } from 'react-native-super-grid';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { FONT_FAMILY } from '../../common/utils/Constants';
+import { FONT_FAMILY } from '../../common/utils/FontFamily';
 import { colors } from '../../common/utils/Colors';
 
 

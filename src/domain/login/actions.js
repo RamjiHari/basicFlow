@@ -1,22 +1,31 @@
-import { dispatchAction } from '../../common/utils/Dispatch';
 import { LOGIN, LOGIN_ERROR, IN_PROGRESS, LOGOUT,ERROR } from './actionTypes';
-import { fetchApi } from './fetch';
+import { fetchApi } from './api';
 import { LOGIN_URL } from './urls';
 
 export const login = (data) => {
 
         return async (dispatch) => {
-            dispatchAction(IN_PROGRESS,'',dispatch)
-
+            dispatch ({
+                type : IN_PROGRESS ,
+            })
             const response = await fetchApi ( LOGIN_URL, data) ;
             console.log( response , "response" )
             if ( response.error == undefined ) {
                 if( response.status == 'success' ) {
-                    dispatchAction(LOGIN,response,dispatch)
+                    dispatch ({
+                        type : LOGIN ,
+                        payload : response ,
+                    })
                 } else {
-                    dispatchAction(LOGIN_ERROR,response,dispatch)
+                    dispatch ({
+                        type : LOGIN_ERROR ,
+                        payload : response ,
+                    })
                 }} else {
-                    dispatchAction(ERROR,response,dispatch)
+                    dispatch ({
+                        type : ERROR ,
+                        payload : response ,
+                    })
                 }}
 };
 

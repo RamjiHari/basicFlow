@@ -18,7 +18,7 @@ import  {  useDispatch ,  useSelector  } from 'react-redux';
 import  {  login  } from './actions';
 import  {  colors  } from '../../common/utils/Colors';
 import styles from './style';
-import { FLOW_LOGO, LOGIN_BG_IMAGE, LOGIN_HEAD } from '../../common/utils/Constants';
+import { FLOW_LOGO, LOGIN_BG_IMAGE, LOGIN_HEAD } from '../../common/utils/Image';
 
 
 const LoginScreen  =   (  { navigation } )  =>  {

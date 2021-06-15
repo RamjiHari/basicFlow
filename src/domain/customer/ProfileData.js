@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { Linking, Platform, TouchableOpacity } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { FONT_FAMILY } from '../../common/utils/Constants';
+import { FONT_FAMILY } from '../../common/utils/FontFamily';
 
 
 export default function CustomerData(props) {

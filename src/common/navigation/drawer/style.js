@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { FONT_FAMILY } from '../../utils/Constants';
+import { FONT_FAMILY } from '../../utils/FontFamily';
 
 export default StyleSheet.create({
     drawerContent: {
