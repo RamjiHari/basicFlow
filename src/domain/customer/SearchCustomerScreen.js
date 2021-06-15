@@ -7,6 +7,7 @@ export default function CustomerScreen({navigation}) {
         <View style={styles.container}>
         <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
             <Text>SearchCustomer</Text>
+            <Text>first Checkout</Text>
          </TouchableOpacity>
 
         </View>
