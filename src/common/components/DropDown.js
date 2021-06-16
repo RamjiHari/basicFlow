@@ -1,6 +1,6 @@
 import React  from 'react'
 import {Picker} from '@react-native-picker/picker';
-import Master from '../utils/DropDownMaster';
+import {Master} from '../utils/DropDownMaster';
 
 export default function DropDown(props) {
 
