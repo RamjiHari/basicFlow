@@ -11,6 +11,7 @@ export default function InputText(props) {
           autoCapitalize="none"
           secureTextEntry={props.secureTextEntry}
           onChangeText={props.handleText}
+          keyboardType={props.keyboardType}
         />
     )
 }

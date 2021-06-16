@@ -4,3 +4,4 @@ export const REGISTER_ROOT = 'Register';
 export const SEARCH_ROOT = 'Search';
 export const PROFILE_ROOT = 'Profile';
 export const SCHEDULE_ROOT = 'Schedule';
+export const PREVIEW_REGISTER_ROOT = 'PreviewRegister'
