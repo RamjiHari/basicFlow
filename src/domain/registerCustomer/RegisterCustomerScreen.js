@@ -1,36 +1,36 @@
 import React,{useState} from 'react'
 import {View, Text,StyleSheet, Image} from 'react-native'
+import CheckBox from '@react-native-community/checkbox';
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {launchCamera} from 'react-native-image-picker';
-import { RadioButton, Checkbox} from 'react-native-paper';
+import { RadioButton } from 'react-native-paper';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import DropDown from '../../common/components/DropDown';
 import InputText from '../../common/components/InputText';
 
-export default function RegisterCustomer() {
+export default function RegisterCustomerScreen({ navigation }) {
 
   const [response,setResponse] = useState('');
-  const [checked, setChecked] = useState(false);
   const [errors,setErrors] = useState(false)
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
 
   const [state,setState] = useState({
-    id_type:'' , id_photo:null , national_id:'' , data_prvdr_code:'' , partner_custid:'' , biz_name:'', biz_addr_prop_type:'' , ownership:'' , photo_biz_lic:null , photo_shop:null , business_distance:'' , first_name:'' , last_name:'' , gender:'' , dob:'Select Date' , photo_selfie:null , photo_pps:null , mob_num:'' , whatsapp:'' , region:'' , district:'' , country:'' , location:'' , sub_country:'' , parish:'' ,village:'' , landmark:'' , gps:''
+    id_type:'' , id_photo:null , national_id:'' , data_prvdr_code:'' , data_prvdr_cust_id:'' , biz_name:'', biz_addr_prop_type:'' , ownership:'' , photo_biz_lic:null , photo_shop:null , business_distance:'' , first_name:'' , last_name:'' , gender:'' , dob:'Select Date' , photo_selfie:null , photo_pps:null , mob_num:'' , whatsapp:'' , isSelected:false , region:'' , district:'' , country:'' , location:'' , sub_country:'' , parish:'' ,village:'' , landmark:'' , gps:''
   })
 
-  const onChangeText = (key, val) => {
-    let updated,lnameUpdated;
-    if(key == 'isSelected' || (key == 'fname' && state.isSelected)){
-      if((key == 'fname' && state.isSelected)){
-        lnameUpdated = val;
+  const onChange = (key,val) => {
+    let updated,whatsappUpdated;
+    if(key == 'isSelected' || (key == 'mob_num' && state.isSelected)){
+      if((key == 'mob_num' && state.isSelected)){
+        whatsappUpdated = val;
       }else{
-        lnameUpdated = state.fname;
+        whatsappUpdated = state.mob_num;
       }
       updated = {
         ...state,
-        lname:lnameUpdated,
+        whatsapp:whatsappUpdated,
         [key]:val
       }
 
@@ -41,25 +41,21 @@ export default function RegisterCustomer() {
       }
     }
 
-    setstate(updated)
-
-  }
-
-  const onChange = (key,val) => {
-    setState({
-      ...state,
-      [key] : val
-    })
+    setState(updated)
   }
 
   const handleChoosePhoto =  (type) => {
     let options = {
+      quality: 1,
+      maxWidth: 2000,
+      maxHeight: 2000,
         storageOptions: {
           skipBackup: true,
           path: 'images',
         },
       };
     launchCamera(options,response => {
+      console.log('response = ' ,response)
 
         if (response.didCancel) {
           console.log('User cancelled image picker');
@@ -93,7 +89,6 @@ export default function RegisterCustomer() {
   };
 
   const progressStepsStyle = {
-
     disabledStepIconColor:'#a9a9a9',
     progressBarColor:'#a9a9a9',
     labelColor:'#000',
@@ -107,13 +102,12 @@ export default function RegisterCustomer() {
     completedCheckColor: '#fff',
   };
 
-  const onPresscheck = () => {
-
+  const onSubmitSteps = () => {
+    navigation.push('PreviewRegister' , state)
   }
 
-  const onSubmitSteps = () => {  }
-
   const identityValidation = () => {}
+
 
 
 return (
@@ -130,7 +124,7 @@ return (
         <View style={styles.content}>
           <Text style={styles.title}>Identity Info</Text>
           <View style={styles.full}>
-            <DropDown type = 'visit_purpose'/>
+            <DropDown type = 'visit_purpose' handleText={val => onChange('id_type', val)} value={ state.id_type }/>
           </View>
           <View style={styles.rowAlign}>
             <Text style={styles.text}>ID Proof Photo</Text>
@@ -138,13 +132,13 @@ return (
             <Image style={styles.previewImage} source={{ uri : state.id_photo }}/>
           </View>
           <View style={styles.full}>
-            <InputText placeholder="Enter Id Number" />
+            <InputText placeholder="Enter Id Number" handleText={val => onChange('national_id', val)} value={ state.national_id }/>
           </View>
           <View style={styles.full}>
-            <DropDown type = 'visit_purpose'/>
+            <DropDown type = 'visit_purpose' handleText={val => onChange('data_prvdr_code', val)} value={ state.data_prvdr_code }/>
           </View>
           <View style={styles.full}>
-            <InputText placeholder="Enter Id Number" />
+            <InputText placeholder="Enter Partner CustID" handleText={val => onChange('data_prvdr_cust_id', val)} value={ state.data_prvdr_cust_id }/>
           </View>
         </View>
       </ProgressStep>
@@ -162,14 +156,17 @@ return (
         <View style={styles.content}>
           <Text style={styles.title}>Biz Info</Text>
           <View style={styles.full}>
-            <InputText placeholder="Enter Business Name" />
+            <InputText placeholder="Enter Business Name" handleText={val => onChange('biz_name', val)} value={ state.biz_name } />
           </View>
           <View style={styles.full}>
-            <DropDown type = 'visit_purpose'/>
+            <DropDown type = 'visit_purpose' handleText={val => onChange('biz_addr_prop_type', val)} value={ state.biz_addr_prop_type } />
+          </View>
+          <View style={styles.full}>
+            <DropDown type = 'visit_purpose' handleText={val => onChange('business_distance', val)} value={ state.business_distance }/>
           </View>
           <RadioButton.Group   onValueChange={val => onChange('ownership',val)} value={state.ownership}>
             <Text style={styles.text}>Establishment Ownership</Text>
-            <View style={styles.rowAlign}>
+            <View style={styles.radiobutton}>
               <Text>Rented</Text>
               <RadioButton value="rented" />
               <Text>Owned</Text>
@@ -186,9 +183,6 @@ return (
             <Icon  name="camera" size={25} onPress={() => handleChoosePhoto('photo_shop')}></Icon>
             <Image style={styles.previewImage} source={{ uri : state.photo_shop }}/>
           </View>
-          <View style={styles.full}>
-            <DropDown type = 'visit_purpose'/>
-          </View>
         </View>
       </ProgressStep>
 
@@ -202,12 +196,12 @@ return (
         previousBtnTextStyle={styles.buttonTextStyle}
       >
         <View style={styles.content}>
-          <Text style={styles.title}>Identity Info</Text>
+          <Text style={styles.title}>Personal Info</Text>
           <View style={styles.full}>
-            <InputText placeholder="Enter First Name" />
+            <InputText placeholder="Enter first Name"  handleText={val => onChange('first_name', val)} value={ state.first_name } />
           </View>
           <View style={styles.full}>
-            <InputText placeholder="Enter Last Name" />
+            <InputText placeholder="Enter Last Name" handleText={val => onChange('last_name', val)} value={ state.last_name }/>
           </View>
           <RadioButton.Group   onValueChange={val => onChange('gender',val)} value={state.gender}>
             <View style={styles.rowAlign}>
@@ -256,17 +250,17 @@ return (
         <View  style={styles.content}>
           <Text style={styles.title}>Contact Info</Text>
           <View style={styles.full}>
-            <InputText placeholder="Enter Mobile Number" />
+            <InputText placeholder="Enter Mobile Number" handleText={val => onChange('mob_num', val)} value={ state.mob_num } keyboardType='numeric' />
           </View>
           <View style={styles.full}>
-            <InputText placeholder="Enter Messenger Number" />
+            <InputText placeholder="Enter Messenger Number" handleText={val => onChange('whatsapp', val)} value={ state.whatsapp } keyboardType='numeric'/>
           </View>
           <View style={styles.rowAlign}>
-            <Checkbox
-              status={checked ? 'checked' : 'unchecked'}
-              onPress={() => setChecked(!checked)}
-              />
-            <Text style={styles.text}>Same as Mobile Number</Text>
+            <CheckBox
+              value={state.isSelected}
+              onValueChange={val => onChange('isSelected', val)}
+            />
+              <Text>Same As Mobile Number</Text>
           </View>
         </View>
       </ProgressStep>
@@ -285,34 +279,34 @@ return (
           <Text style={styles.title}>Address Info</Text>
           <View style={styles.rowAlign}>
             <View style={styles.half}>
-              <DropDown type = 'visit_purpose'/>
+              <DropDown type = 'visit_purpose' handleText={val => onChange('region', val)} value={ state.region }/>
             </View>
             <View style={styles.half}>
-              <DropDown type = 'visit_purpose'/>
-            </View>
-          </View>
-          <View style={styles.rowAlign}>
-            <View style={styles.half}>
-              <DropDown type = 'visit_purpose'/>
-            </View>
-            <View style={styles.half}>
-              <DropDown type = 'visit_purpose'/>
+              <DropDown type = 'visit_purpose' handleText={val => onChange('district', val)} value={ state.district }/>
             </View>
           </View>
           <View style={styles.rowAlign}>
             <View style={styles.half}>
-              <InputText placeholder="SubCountry" />
+              <DropDown type = 'visit_purpose' handleText={val => onChange('country', val)} value={ state.country }/>
             </View>
             <View style={styles.half}>
-              <InputText placeholder="Parish" />
+              <DropDown type = 'visit_purpose' handleText={val => onChange('location', val)} value={ state.location }/>
             </View>
           </View>
           <View style={styles.rowAlign}>
             <View style={styles.half}>
-              <InputText placeholder="Village" />
+              <InputText placeholder="SubCountry" handleText={val => onChange('sub_country', val)} value={ state.sub_country }/>
             </View>
             <View style={styles.half}>
-              <InputText placeholder="Landmark" />
+              <InputText placeholder="Parish" handleText={val => onChange('parish', val)} value={ state.parish }/>
+            </View>
+          </View>
+          <View style={styles.rowAlign}>
+            <View style={styles.half}>
+              <InputText placeholder="Village" handleText={val => onChange('village', val)} value={ state.village }/>
+            </View>
+            <View style={styles.half}>
+              <InputText placeholder="Landmark" handleText={val => onChange('landmark', val)} value={ state.landmark }/>
             </View>
           </View>
           <View style={styles.rowAlign}>
@@ -332,7 +326,7 @@ const styles = StyleSheet.create({
     width:'90%',
     borderBottomWidth: 1,
     borderBottomColor: "rgba(155,155,155,1)",
-    marginBottom:20
+    marginBottom:15
   },
   half: {
     width:'40%',
@@ -351,7 +345,7 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   title: {
-    marginTop:20,
+    marginTop:15,
     fontSize:25
   },
   text:{
@@ -390,5 +384,11 @@ const styles = StyleSheet.create({
   spacetext: {
     marginRight:20,
     fontSize:16
+  },
+  radiobutton: {
+    flexDirection:'row',
+    alignItems:'baseline',
+    justifyContent:'center',
+    marginBottom:5
   }
 })

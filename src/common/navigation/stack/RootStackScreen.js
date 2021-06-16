@@ -3,12 +3,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../../../domain/home/HomeScreen';
 import CustomerScreen from '../../../domain/customer/SearchCustomerScreen';
 import RegisterScreen from '../../../domain/registerCustomer/RegisterCustomerScreen';
-import LoginScreen from '../../../domain/session/LoginScreen';
+import PreviewRegisterScreen from '../../../domain/registerCustomer/PreviewRegisterScreen';
+import LoginScreen from '../../../domain/login/LoginScreen';
 import Profile from '../../../domain/customer/ProfileScreen';
 import { colors } from '../../utils/Colors';
 import { REGISTER_HEAD ,CUSTOMER_HEAD,SCHEDULE_HEAD,PROFILE_HEAD} from '../../utils/NavigationHead';
 import { HeaderLeft, HeaderRight } from '../../components/Header';
-import { HOME_ROOT, LOGIN_ROOT, PROFILE_ROOT, REGISTER_ROOT, SCHEDULE_ROOT, SEARCH_ROOT } from '../../utils/NavigationRoot';
+import { HOME_ROOT, LOGIN_ROOT, PROFILE_ROOT, REGISTER_ROOT, SCHEDULE_ROOT, SEARCH_ROOT, PREVIEW_REGISTER_ROOT} from '../../utils/NavigationRoot';
 import { FONT_FAMILY } from '../../utils/FontFamily';
 import ScheduleScreen from '../../../domain/schedule/ScheduleScreen';
 import MainTabScreen from '../tab/MainTabScreen';
@@ -67,6 +68,7 @@ export const RegisterStackScreen=({navigation}) =>{
     return(
         <Stack.Navigator screenOptions={screenOptions}>
             <Stack.Screen name={REGISTER_ROOT} component={RegisterScreen}  options={option(navigation,REGISTER_HEAD,REGISTER_ROOT)} />
+            <Stack.Screen name={PREVIEW_REGISTER_ROOT} component={PreviewRegisterScreen}  options={option(navigation,REGISTER_HEAD,REGISTER_ROOT)} />
         </Stack.Navigator>
     )
 }
@@ -78,6 +80,3 @@ export const ScheduleStackScreen=({navigation}) =>{
         </Stack.Navigator>
     )
 }
-
-
-
