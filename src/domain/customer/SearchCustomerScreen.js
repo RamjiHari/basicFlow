@@ -189,6 +189,7 @@ export default function CustomerScreen({navigation}) {
           </View>
           <View style={styles.searchField}>
             {/* <TextInput
+
                                     style={styles.input}
                                     // onChangeText={}
                                     // value={text}
@@ -202,6 +203,7 @@ export default function CustomerScreen({navigation}) {
         </View>
         <View style={styles.searchField3}>
           {/* <TextInput
+
                                     style={styles.input3}
                                     // onChangeText={}
                                     // value={text}
@@ -212,7 +214,6 @@ export default function CustomerScreen({navigation}) {
             <InputText placeholder="Name or Mobile or Partner" />
           </View>
         </View>
-
         <View style={styles.btnContainer}>
           <TouchableHighlight
             style={styles.submit}
@@ -302,6 +303,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
 });
+
 
 // const styles = StyleSheet.create({
 //     container: {

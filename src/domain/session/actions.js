@@ -1,8 +1,6 @@
-import { Api } from '../../common/utils/Api';
+import { config } from '../../../config';
 import { LOGIN, LOGIN_ERROR, IN_PROGRESS, LOGOUT,ERROR } from './actionTypes';
 import { fetchApi } from './api';
-
-console.log(Api+'login',"sssss")
 
 export const login = (data) => {
 
@@ -10,7 +8,7 @@ export const login = (data) => {
             dispatch ({
                 type : IN_PROGRESS ,
             })
-            const response = await fetchApi ( Api+'login', data) ;
+            const response = await fetchApi ( config.API_HOST_NAME+'login', data) ;
             console.log( response , "response" )
             if ( response.error == undefined ) {
                 if( response.status == 'success' ) {
