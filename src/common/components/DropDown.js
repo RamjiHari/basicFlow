@@ -11,9 +11,9 @@ export default function DropDown(props) {
     return ( <Picker.Item key={index} label={item.data_code} value={item.data_code} /> )
     })
     return (
-        <Picker    onValueChange={props.handleText}>
-         <Picker.Item label="Options"/>
-            {items}
-        </Picker>
+        <Picker onValueChange={props.handleText}>
+            <Picker.Item label="Options"/>
+                {items}
+            </Picker>
     )
 }

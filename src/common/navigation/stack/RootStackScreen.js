@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../../../domain/home/HomeScreen';
 import CustomerScreen from '../../../domain/customer/SearchCustomerScreen';
 import RegisterScreen from '../../../domain/registerCustomer/RegisterCustomerScreen';
-import LoginScreen from '../../../domain/login/LoginScreen';
+import LoginScreen from '../../../domain/session/LoginScreen';
 import Profile from '../../../domain/customer/ProfileScreen';
 import { colors } from '../../utils/Colors';
 import { REGISTER_HEAD ,CUSTOMER_HEAD,SCHEDULE_HEAD,PROFILE_HEAD} from '../../utils/NavigationHead';

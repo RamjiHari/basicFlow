@@ -14,7 +14,7 @@ export default function RegisterCustomer() {
   const [checked, setChecked] = useState(false);
   const [errors,setErrors] = useState(false)
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  
+
 
   const [state,setState] = useState({
     id_type:'' , id_photo:null , national_id:'' , data_prvdr_code:'' , partner_custid:'' , biz_name:'', biz_addr_prop_type:'' , ownership:'' , photo_biz_lic:null , photo_shop:null , business_distance:'' , first_name:'' , last_name:'' , gender:'' , dob:'Select Date' , photo_selfie:null , photo_pps:null , mob_num:'' , whatsapp:'' , region:'' , district:'' , country:'' , location:'' , sub_country:'' , parish:'' ,village:'' , landmark:'' , gps:''
@@ -93,7 +93,7 @@ export default function RegisterCustomer() {
   };
 
   const progressStepsStyle = {
-    
+
     disabledStepIconColor:'#a9a9a9',
     progressBarColor:'#a9a9a9',
     labelColor:'#000',
@@ -108,7 +108,7 @@ export default function RegisterCustomer() {
   };
 
   const onPresscheck = () => {
-    
+
   }
 
   const onSubmitSteps = () => {  }
@@ -119,7 +119,7 @@ export default function RegisterCustomer() {
 return (
   <View style={styles.container}>
     <ProgressSteps {...progressStepsStyle} >
-      <ProgressStep 
+      <ProgressStep
         label="IDs"
         scrollViewProps={styles.contentContainer}
         nextBtnStyle={styles.nxtbtnstyle}
@@ -150,7 +150,7 @@ return (
       </ProgressStep>
 
 
-      <ProgressStep 
+      <ProgressStep
         label="Biz Info"
         previousBtnText="Back"
         scrollViewProps={styles.contentContainer}
@@ -163,7 +163,7 @@ return (
           <Text style={styles.title}>Biz Info</Text>
           <View style={styles.full}>
             <InputText placeholder="Enter Business Name" />
-          </View>  
+          </View>
           <View style={styles.full}>
             <DropDown type = 'visit_purpose'/>
           </View>
@@ -185,14 +185,14 @@ return (
             <Text style={{fontSize:16,marginRight:15}}>Business Establishment Photo</Text>
             <Icon  name="camera" size={25} onPress={() => handleChoosePhoto('photo_shop')}></Icon>
             <Image style={styles.previewImage} source={{ uri : state.photo_shop }}/>
-          </View>  
+          </View>
           <View style={styles.full}>
             <DropDown type = 'visit_purpose'/>
-          </View>       
+          </View>
         </View>
       </ProgressStep>
 
-      <ProgressStep 
+      <ProgressStep
         label="Personal"
         previousBtnText="Back"
         scrollViewProps={styles.contentContainer}
@@ -217,7 +217,7 @@ return (
               <Text>Female</Text>
               <RadioButton value="female" />
             </View>
-          </RadioButton.Group> 
+          </RadioButton.Group>
           <View style={styles.rowAlign}>
             <Text style={styles.spacetext}>DOB</Text>
             <View style={styles.datepick}>
@@ -235,16 +235,16 @@ return (
             <Text style={{fontSize:16,marginRight:'40%'}}>Selfie Photo</Text>
             <Icon name="camera" size={25} onPress={() => handleChoosePhoto('photo_selfie')}></Icon>
             <Image style={styles.previewImage} source={{ uri : state.photo_selfie }}/>
-          </View>  
+          </View>
           <View style={styles.rowAlign}>
             <Text style={{fontSize:16,marginRight:'33%'}}>Passport Photo</Text>
             <Icon  name="camera" size={25} onPress={() => handleChoosePhoto('photo_pps')}></Icon>
             <Image style={styles.previewImage} source={{ uri : state.photo_pps }}/>
-          </View> 
+          </View>
         </View>
       </ProgressStep>
 
-      <ProgressStep 
+      <ProgressStep
         label="Contact"
         previousBtnText="Back"
         scrollViewProps={styles.contentContainer}
@@ -271,7 +271,7 @@ return (
         </View>
       </ProgressStep>
 
-      <ProgressStep 
+      <ProgressStep
         label="Address"
         previousBtnText="Back"
         onSubmit={onSubmitSteps}
@@ -304,7 +304,7 @@ return (
               <InputText placeholder="SubCountry" />
             </View>
             <View style={styles.half}>
-              <InputText placeholder="Parish" /> 
+              <InputText placeholder="Parish" />
             </View>
           </View>
           <View style={styles.rowAlign}>
@@ -312,7 +312,7 @@ return (
               <InputText placeholder="Village" />
             </View>
             <View style={styles.half}>
-              <InputText placeholder="Landmark" /> 
+              <InputText placeholder="Landmark" />
             </View>
           </View>
           <View style={styles.rowAlign}>
@@ -323,7 +323,7 @@ return (
       </ProgressStep>
     </ProgressSteps>
   </View>
-  
+
 );
 }
 

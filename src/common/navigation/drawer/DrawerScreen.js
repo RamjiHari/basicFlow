@@ -5,7 +5,7 @@ import {Avatar,Text,Title,Caption,Paragraph,Drawer,TouchableRipple,Switch} from 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style.js';
 import { useSelector,useDispatch} from 'react-redux';
-import { logout } from '../../../domain/login/actions';
+import { logout } from '../../../domain/session/actions';
 import { colors } from '../../utils/Colors.js';
 
 

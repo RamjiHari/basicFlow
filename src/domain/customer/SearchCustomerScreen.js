@@ -13,12 +13,12 @@ export default function CustomerScreen({navigation}) {
                     <Text style={styles.searchHeadingText}>Search and Select Customer</Text>
                 </View>
                 <View style={styles.searchFieldContainer}>
-                    
+
                     <View style={styles.searchField}>
                     <View style={styles.input}>
                               <DropDown type="visit_purpose"/>
                               </View>
-                  
+
                     </View>
                     <View style={styles.searchField}>
                     {/* <TextInput
@@ -33,7 +33,7 @@ export default function CustomerScreen({navigation}) {
                               </View>
                     </View>
 
-                 
+
                 </View>
                 <View style={styles.searchField3}>
                     {/* <TextInput
@@ -57,10 +57,10 @@ export default function CustomerScreen({navigation}) {
                     </TouchableHighlight>
 
                 </View>
-                
+
             </View>
-            <SearchList navigation={navigation}/>
- 
+            <SearchList navigation={navigation} />
+
         </View>
     )
 }
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     searchFieldContainer: {
-        flexDirection: 'row', 
+        flexDirection: 'row',
     },
     searchField: {
         flex: 1,

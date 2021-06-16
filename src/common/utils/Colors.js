@@ -1,5 +1,3 @@
-import {StyleSheet} from 'react-native';
-
 export const colors={
     defaultRed:"#3d26a3",
     textGray:"#c7c7cc",
