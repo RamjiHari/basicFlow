@@ -4,7 +4,7 @@ import Master from '../utils/DropDownMaster';
 
 export default function DropDown(props) {
 
-    console.log(Master,"sss")
+
     const[category,setCategory]= React.useState(Master.filter(e=>e.data_key==props.type))
 
     let items = category.map((item,index) => {

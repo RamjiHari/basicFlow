@@ -6,7 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainTabScreen from './src/common/navigation/tab/MainTabScreen';
 import {DrawerContent} from './src/common/navigation/drawer/DrawerScreen'
-
 import {LogStackScreen} from './src/common/navigation/stack/RootStackScreen';
 const Drawer = createDrawerNavigator();
 import { MenuProvider } from 'react-native-popup-menu';
@@ -39,7 +38,7 @@ if(session.userToken==null && session.error !='' && !session.loggedIn){
 
     <NavigationContainer>
       <MenuProvider>
-        {session.loggedIn ?
+        {!session.loggedIn ?
         (<Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>}>
         <Drawer.Screen name="Index" component={MainTabScreen} />
         </Drawer.Navigator> )
