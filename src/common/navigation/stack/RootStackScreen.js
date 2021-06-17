@@ -58,7 +58,7 @@ export const HomeStackScreen=({navigation}) =>{
 export const CustomerStackScreen=({navigation}) =>{
     return(<Stack.Navigator screenOptions={screenOptions}>
             <Stack.Screen name={SEARCH_ROOT}     component={CustomerScreen}  options={option(navigation,CUSTOMER_HEAD,SEARCH_ROOT)} />
-            <Stack.Screen name={PROFILE_ROOT}    component={Profile}  options={option(navigation,PROFILE_HEAD,PROFILE_ROOT)}/>
+            <Stack.Screen name={PROFILE_ROOT}    component={Profile} options={{title:PROFILE_HEAD}} />
     </Stack.Navigator>)
 
 }
@@ -68,7 +68,7 @@ export const RegisterStackScreen=({navigation}) =>{
     return(
         <Stack.Navigator screenOptions={screenOptions}>
             <Stack.Screen name={REGISTER_ROOT} component={RegisterScreen}  options={option(navigation,REGISTER_HEAD,REGISTER_ROOT)} />
-            <Stack.Screen name={PREVIEW_REGISTER_ROOT} component={PreviewRegisterScreen}  options={option(navigation,REGISTER_HEAD,REGISTER_ROOT)} />
+            <Stack.Screen name={PREVIEW_REGISTER_ROOT} component={PreviewRegisterScreen} options={{title:REGISTER_HEAD}}   />
         </Stack.Navigator>
     )
 }

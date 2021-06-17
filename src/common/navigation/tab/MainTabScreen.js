@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { colors } from "../../utils/Colors";
 import {CustomerStackScreen, HomeStackScreen, RegisterStackScreen, ScheduleStackScreen} from '../stack/RootStackScreen';
-import { HOME_ROOT , REGISTER_ROOT, SCHEDULE_ROOT, SEARCH_ROOT } from '../../utils/NavigationRoot';
+import { HOME_ROOT , SCHEDULE_ROOT, SEARCH_ROOT } from '../../utils/NavigationRoot';
 
 const Tab = createMaterialBottomTabNavigator();
 

@@ -1,5 +1,5 @@
 import { config } from '../../../config';
-import { LOGIN, LOGIN_ERROR, IN_PROGRESS, LOGOUT,ERROR } from './actionTypes';
+import { LOGIN, LOGIN_ERROR, IN_PROGRESS, LOGOUT,ERROR , VALIDATION ,VALIDATION_ERROR } from './actionTypes';
 import { fetchApi } from './api';
 
 export const login = (data) => {
@@ -28,6 +28,31 @@ export const login = (data) => {
                     })
                 }}
 };
+
+export const validation =  (password) =>{
+    return async (dispatch) => {
+        const response = await fetchApi ( config.API_HOST_NAME+'validate', {password:password}) ;
+        console.log( response , "response" )
+        if ( response.error == undefined ) {
+            if( response.status == 'success' ) {
+                console.log("1")
+                dispatch ({
+                    type : VALIDATION ,
+                    payload : response ,
+                })
+            } else {
+                dispatch ({
+                    type : VALIDATION_ERROR ,
+                    payload : response ,
+                })
+            }} else {
+                dispatch ({
+                    type : ERROR ,
+                    payload : response ,
+                })
+            }
+    }
+}
 
 export const logout = () => {
     return {

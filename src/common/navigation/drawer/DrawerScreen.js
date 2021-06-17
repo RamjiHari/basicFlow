@@ -7,6 +7,7 @@ import styles from './style.js';
 import { useSelector,useDispatch} from 'react-redux';
 import { logout } from '../../../domain/session/actions';
 import { colors } from '../../utils/Colors.js';
+import LogoutButton from '../../../domain/session/LogoutButton.js';
 
 
 export function  DrawerContent(props){
@@ -87,19 +88,9 @@ export function  DrawerContent(props){
             </View>
         </DrawerContentScrollView>
         <Drawer.Section style={styles.bottomDrawerSection}>
-        <DrawerItem
-                    icon={({ size}) => (
-                        <Icon
-                        name="exit-to-app"
-                        color={colors.textblack}
-                        size={size}
-                        />
-                    )}
-                    label="Sign Out"
-                    labelStyle={{color:colors.textblack}}
-                    onPress={() => { onLogout() }}
-                />
+                <LogoutButton name="exit-to-app"  color={colors.textblack} label="Sign Out"  labelStyle={{color:colors.textblack}} />
         </Drawer.Section>
+
 
     </View>
   );

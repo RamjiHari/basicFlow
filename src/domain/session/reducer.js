@@ -1,11 +1,13 @@
-import { LOGIN, LOGIN_ERROR, IN_PROGRESS, LOGOUT ,ERROR} from './actionTypes';
+import { LOGIN, LOGIN_ERROR, IN_PROGRESS, LOGOUT ,ERROR , VALIDATION ,VALIDATION_ERROR} from './actionTypes';
 const INITIAL_STATE = {
   loggedIn: false,
   loggingIn: false,
   userToken: null,
   logginError:'',
   userInfo: '',
-  error: ''
+  error: '',
+  valid : true,
+  valid_msg :''
 };
 
 export const sessionReducer = (state = INITIAL_STATE, action) => {
@@ -17,6 +19,7 @@ export const sessionReducer = (state = INITIAL_STATE, action) => {
             loggingIn: true
         }
         case LOGIN:
+
             return {
                 ...state,
                 loggedIn: true,
@@ -32,6 +35,18 @@ export const sessionReducer = (state = INITIAL_STATE, action) => {
                 userToken:null,
                 logginError: action.payload.msg
             }
+            case VALIDATION:
+                return {
+                    ...state,
+                    valid : action.payload.valid,
+                    valid_msg : ''
+                }
+                case VALIDATION_ERROR:
+                return {
+                    ...state,
+                    valid : action.payload.valid ,
+                    valid_msg : action.payload.msg
+                }
         case ERROR:
             return {
                 ...state,
