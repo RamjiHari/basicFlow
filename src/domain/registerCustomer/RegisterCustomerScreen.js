@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
-import {View, Text,StyleSheet, Image} from 'react-native'
+import {View, Text,StyleSheet, Image,PermissionsAndroid} from 'react-native'
+import Geolocation from 'react-native-geolocation-service';
 import CheckBox from '@react-native-community/checkbox';
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -70,6 +71,36 @@ export default function RegisterCustomerScreen({ navigation }) {
           setResponse(response)
         }
       });
+  }
+
+  const requestlocationPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log("You can use the location");
+        getLocation();
+      } else {
+        console.log("location permission denied");
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+
+  const getLocation = () => {
+    Geolocation.getCurrentPosition(
+        (position) => {
+          console.log(position);
+          console.log(position.coords.latitude);
+          console.log(position.coords.longitude);
+        },
+        (error) => {
+          console.log(error.code, error.message);
+        },
+        { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
   }
 
   const showDatePicker = () => {
@@ -311,7 +342,7 @@ return (
           </View>
           <View style={styles.rowAlign}>
             <Text style={styles.spacetext}>GPS Location</Text>
-            <Icon  name="map-marker" size={30} onPress={() => alert('map')}></Icon>
+            <Icon  name="map-marker" size={30} onPress={requestlocationPermission}></Icon>
           </View>
         </View>
       </ProgressStep>
